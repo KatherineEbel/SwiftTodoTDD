@@ -43,4 +43,33 @@ class ToDoItemTests: XCTestCase {
     let second = TodoItem(title: "", location: Location(name: "Bar"))
     XCTAssertNotEqual(first, second)
   }
+
+  func test_Items_WhenOneLocationIsNil_AreNotEqual() {
+    var first = TodoItem(title: "", location: Location(name: "Foo"))
+    var second = TodoItem(title: "", location: nil)
+    XCTAssertNotEqual(first, second)
+
+    first = TodoItem(title: "", location: nil)
+    second = TodoItem(title: "", location: Location(name: "Foo"))
+    XCTAssertNotEqual(first, second)
+  }
+
+  func test_Items_WhenTimestampsDiffer_AreNotEqual() {
+    let first = TodoItem(title: "Foo", timestamp: 1.0)
+    let second = TodoItem(title: "Foo", timestamp: 0.0)
+    XCTAssertNotEqual(first, second)
+  }
+
+  func test_Items_WhenDescriptionsDiffer_AreNotEqual() {
+    let first = TodoItem(title: "Foo", itemDescription: "Description 1")
+    let second = TodoItem(title: "Foo", itemDescription: "Description 2")
+    XCTAssertNotEqual(first, second)
+  }
+
+  func test_Items_WhenTitlesDiffer_AreNotEqual() {
+    let first = TodoItem(title: "Foo")
+    let second = TodoItem(title: "Bar")
+    XCTAssertNotEqual(first, second)
+  }
+
 }

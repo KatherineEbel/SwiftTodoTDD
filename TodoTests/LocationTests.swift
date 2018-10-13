@@ -32,22 +32,25 @@ class LocationTests: XCTestCase {
   }
 
   func test_Locations_WhenLatitudeDiffers_AreNotEqual() {
-    let firstCoordinate = CLLocationCoordinate2D(latitude: 1.0, longitude: 0.0)
-    let first = Location(name: "Foo", coordinate: firstCoordinate)
-
-    let secondCoordinate = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
-    let second = Location(name: "Foo", coordinate: secondCoordinate)
-    XCTAssertNotEqual(first, second)
+    assertLocationNotEqualWith(firstName: "Foo", firstLongLat: (0.0, 1.0), secondName: "Foo", secondLongLat: (1.0, 1.0))
   }
 
   func test_Locations_WhenLongitudeDiffers_AreNotEqual() {
-    assertLocationNotEqualWith(firstName: "Foo", firstLongLat: (1.0, 0.0), secondName: "Foo", secondLongLat: (0.0, 0.0))
+    assertLocationNotEqualWith(firstName: "Foo", firstLongLat: (1.0, 0.0), secondName: "Foo", secondLongLat: (1.0, 1.0))
   }
 
+  func test_Locations_WhenOnlyOneHasCoordinate_AreNotEqual() {
+    assertLocationNotEqualWith(firstName: "Foo", firstLongLat: (0.0, 0.0), secondName: "Foo", secondLongLat: nil)
+  }
+
+  func test_Locations_WhenNamesDiffer_AreNotEqual() {
+    assertLocationNotEqualWith(firstName: "Foo", firstLongLat: nil, secondName: "Bar", secondLongLat: nil)
+  }
   private func assertLocationNotEqualWith(firstName: String,
                                           firstLongLat: (Double, Double)?,
                                           secondName: String,
-                                          secondLongLat: (Double, Double)?) {
+                                          secondLongLat: (Double, Double)?,
+                                          line: UInt = #line) {
 
     var firstCoord: CLLocationCoordinate2D? = nil
     if let firstLongLat = firstLongLat {
@@ -58,7 +61,7 @@ class LocationTests: XCTestCase {
     if let secondLongLat = secondLongLat {
       secondCoord = CLLocationCoordinate2D(latitude: secondLongLat.0, longitude: secondLongLat.1)
     }
-    let secondLocation = Location(name: firstName, coordinate: secondCoord)
-    XCTAssertNotEqual(firstLocation, secondLocation)
+    let secondLocation = Location(name: secondName, coordinate: secondCoord)
+    XCTAssertNotEqual(firstLocation, secondLocation, line: line)
   }
 }
