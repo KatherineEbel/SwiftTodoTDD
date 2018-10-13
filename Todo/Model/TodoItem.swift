@@ -20,4 +20,15 @@ struct TodoItem {
     self.timestamp = timestamp
     self.location = location
   }
+
 }
+
+extension TodoItem: Equatable {}
+
+func ==(lhs: TodoItem, rhs: TodoItem) -> Bool {
+  if lhs.location?.name != rhs.location?.name {
+    return false
+  }
+  return true
+}
+

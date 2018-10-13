@@ -8,15 +8,8 @@
 
 import XCTest
 @testable import Todo
+
 class ToDoItemTests: XCTestCase {
-
-    override func setUp() {
-
-    }
-
-    override func tearDown() {
-    }
-  
   func test_Init_WhenGivenTitle_SetsTitle() {
     let item = TodoItem(title: "Foo")
     XCTAssertEqual(item.title, "Foo", "should set title")
@@ -37,5 +30,17 @@ class ToDoItemTests: XCTestCase {
     let location = Location(name: "Foo")
     let item = TodoItem(title: "", location: location)
     XCTAssertEqual(item.location?.name, location.name, "should set location")
+  }
+
+  func test_EqualItems_AreEqual() {
+    let first = TodoItem(title: "Foo")
+    let second = TodoItem(title: "Foo")
+    XCTAssertEqual(first, second)
+  }
+
+  func test_Items_WhenLocationDiffers_AreNotEqual() {
+    let first = TodoItem(title: "", location: Location(name: "Foo"))
+    let second = TodoItem(title: "", location: Location(name: "Bar"))
+    XCTAssertNotEqual(first, second)
   }
 }
