@@ -21,7 +21,7 @@ class ItemListDataProviderTests: XCTestCase {
     controller.loadViewIfNeeded()
     tableView = controller.tableView
     tableView.dataSource = sut
-
+    tableView.delegate = sut
   }
 
   func test_NumberOfSections_IsTwo() {
@@ -90,6 +90,46 @@ class ItemListDataProviderTests: XCTestCase {
 
     let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! MockItemCell
     XCTAssertEqual(cell.item, second)
+  }
+
+  func test_DeleteButton_InFirstSection_ShowsTitleCheck() {
+    let deleteButtonTitle = tableView.delegate?.tableView?(
+        tableView,
+        titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 0)
+    )
+    XCTAssertEqual(deleteButtonTitle, "Check")
+  }
+
+  func test_DeleteButton_InSecondSection_ShowsTitleUncheck() {
+    let deleteButtonTitle = tableView.delegate?.tableView?(
+        tableView,
+        titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 1)
+    )
+    XCTAssertEqual(deleteButtonTitle, "Uncheck")
+  }
+
+  func test_CheckingAnItem_ChecksItInTheItemManager() {
+    sut.itemManager?.add(TodoItem(title: "Foo"))
+    tableView.dataSource?.tableView?(tableView,
+        commit: .delete,
+        forRowAt: IndexPath(row: 0, section: 0))
+    XCTAssertEqual(sut.itemManager?.toDoCount, 0)
+    XCTAssertEqual(sut.itemManager?.doneCount, 1)
+    XCTAssertEqual(tableView.numberOfRows(inSection: 0), 0)
+    XCTAssertEqual(tableView.numberOfRows(inSection: 1), 1)
+  }
+
+  func test_UnCheckingAnItem_UnChecksItInTheItemManager() {
+    sut.itemManager?.add(TodoItem(title: "First"))
+    sut.itemManager?.checkItem(at: 0)
+    tableView.reloadData()
+    tableView.dataSource?.tableView?(tableView,
+        commit: .delete,
+        forRowAt: IndexPath(row: 0, section: 1))
+    XCTAssertEqual(sut.itemManager?.toDoCount, 1)
+    XCTAssertEqual(sut.itemManager?.doneCount, 0)
+    XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
+    XCTAssertEqual(tableView.numberOfRows(inSection: 1), 0)
   }
 }
 
