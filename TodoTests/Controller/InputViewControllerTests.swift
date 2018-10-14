@@ -120,6 +120,24 @@ class InputViewControllerTests: XCTestCase {
     }
     waitForExpectations(timeout: 3, handler: nil)
   }
+
+  func testSave_DismissesViewController() {
+    let mockInputViewController = InputViewController()
+    mockInputViewController.titleTextField = UITextField()
+    mockInputViewController.dateTextField = UITextField()
+    mockInputViewController.locationTextField = UITextField()
+    mockInputViewController.addressTextField = UITextField()
+    mockInputViewController.descriptionTextField = UITextField()
+    mockInputViewController.titleTextField.text = "Test Title"
+    mockInputViewController.save()
+  
+    if let navVC = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController,
+      let listItemVC = navVC.topViewController as? ItemListViewController {
+        XCTAssertNil(listItemVC.presentedViewController)
+    } else {
+      XCTFail()
+    }
+  }
 }
 
 extension InputViewControllerTests {
@@ -140,5 +158,3 @@ extension InputViewControllerTests {
     }
   }
 }
-
-

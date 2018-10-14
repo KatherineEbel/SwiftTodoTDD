@@ -10,7 +10,7 @@ enum Section: Int {
   case done
 }
 
-class ItemListDataProvider: NSObject {
+class ItemListDataProvider: NSObject, ItemManagerSettable {
   var itemManager: ItemManager?
 
 }
@@ -72,4 +72,8 @@ extension ItemListDataProvider: UITableViewDelegate {
     }
     return buttonTitle
   }
+}
+
+@objc protocol ItemManagerSettable {
+  var itemManager: ItemManager? { get set }
 }

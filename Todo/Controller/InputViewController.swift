@@ -47,9 +47,13 @@ class InputViewController: UIViewController {
           
         }
       }
+    } else {
+      let item = TodoItem(title: titleString, itemDescription: descriptionString, timestamp: date?.timeIntervalSince1970, location: nil)
+      self.itemManager?.add(item)
     }
   }
   @IBAction func save(_ sender: UIButton) {
+    save()
+    dismiss(animated: true)
   }
-  
 }
