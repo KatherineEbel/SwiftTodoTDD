@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		278DFDED21735C24005751FB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278DFDEC21735C24005751FB /* MapKit.framework */; };
 		58FC1005A70394B26D48D486 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC1B37A66DFBEE8BC36619 /* Location.swift */; };
 		58FC136BE990A08F5C29A213 /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC1507C8C23839CA175CB9 /* ItemManager.swift */; };
 		58FC167174C074596AB64E4D /* ItemCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC1F6B26D3CD54A436E3AD /* ItemCellTests.swift */; };
+		58FC1A21A685CEAA18FD02D6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC1A09CADFA7A2A531B709 /* DetailViewController.swift */; };
+		58FC1DCB9F458FA40530030E /* DetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC1C649565776EA5F0963E /* DetailViewControllerTests.swift */; };
 		58FC1E59BD37C39045353C3F /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC178BE4A4D0318A7DB451 /* TodoItem.swift */; };
 		611AB2245D36362A387FE75A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 611AB51151F4B14DC3EA9171 /* LaunchScreen.storyboard */; };
 		611AB39EDAB5EFBABFF66FD6 /* ItemListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611AB0F0B8A38E3C060318E0 /* ItemListDataProviderTests.swift */; };
@@ -36,9 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		278DFDEC21735C24005751FB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		58FC1507C8C23839CA175CB9 /* ItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
 		58FC178BE4A4D0318A7DB451 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		58FC1A09CADFA7A2A531B709 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		58FC1B37A66DFBEE8BC36619 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		58FC1C649565776EA5F0963E /* DetailViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTests.swift; sourceTree = "<group>"; };
 		58FC1F6B26D3CD54A436E3AD /* ItemCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCellTests.swift; sourceTree = "<group>"; };
 		611AB0F0B8A38E3C060318E0 /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
 		611AB119FA794B7108591AD4 /* ItemListDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
@@ -70,12 +76,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278DFDED21735C24005751FB /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		278DFDEB21735C24005751FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				278DFDEC21735C24005751FB /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		58FC1087ED287E33949B8EAB /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +123,7 @@
 				611ABDEE784C5E4123278590 /* ItemListViewController.swift */,
 				611AB119FA794B7108591AD4 /* ItemListDataProvider.swift */,
 				611AB44CA671E91AC505178B /* ItemCell.swift */,
+				58FC1A09CADFA7A2A531B709 /* DetailViewController.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -118,6 +134,7 @@
 				611ABDA713ACDF6224A93C68 /* Products */,
 				611AB1E37F26D1F5493F0D33 /* Todo */,
 				611ABE1F242B86789170B417 /* TodoTests */,
+				278DFDEB21735C24005751FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +155,7 @@
 				611ABFD28DDA3E8CA0B1F4A3 /* ItemListViewControllerTest.swift */,
 				611AB0F0B8A38E3C060318E0 /* ItemListDataProviderTests.swift */,
 				58FC1F6B26D3CD54A436E3AD /* ItemCellTests.swift */,
+				58FC1C649565776EA5F0963E /* DetailViewControllerTests.swift */,
 			);
 			path = TodoTests;
 			sourceTree = "<group>";
@@ -188,6 +206,13 @@
 			attributes = {
 				ORGANIZATIONNAME = "Katherine Ebel";
 				TargetAttributes = {
+					611ABC1982B253D648C2ACBE = {
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					611ABEB1A9FBD4B2D0B5B44F = {
 						DevelopmentTeam = 8FN9PNN474;
 					};
@@ -243,6 +268,7 @@
 				611AB7431276F9194BD24BAF /* ItemListViewController.swift in Sources */,
 				611AB69FDC9DADC7B00E55DC /* ItemListDataProvider.swift in Sources */,
 				611AB51C84A5E8EE5F7FFC93 /* ItemCell.swift in Sources */,
+				58FC1A21A685CEAA18FD02D6 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +282,7 @@
 				611ABF6AB98F76A53EE83D6F /* ItemListViewControllerTest.swift in Sources */,
 				611AB39EDAB5EFBABFF66FD6 /* ItemListDataProviderTests.swift in Sources */,
 				58FC167174C074596AB64E4D /* ItemCellTests.swift in Sources */,
+				58FC1DCB9F458FA40530030E /* DetailViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
