@@ -33,6 +33,9 @@ func ==(lhs: TodoItem, rhs: TodoItem) -> Bool {
     return false
   }
   if lhs.timestamp != rhs.timestamp {
+    if let leftStamp = lhs.timestamp, let rightStamp = rhs.timestamp {
+      return abs(leftStamp - rightStamp) < 100_000
+    }
     return false
   }
   if lhs.itemDescription != rhs.itemDescription {

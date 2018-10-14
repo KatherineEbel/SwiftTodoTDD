@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		278DFDED21735C24005751FB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278DFDEC21735C24005751FB /* MapKit.framework */; };
+		278DFDEF21736C86005751FB /* InputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278DFDEE21736C86005751FB /* InputViewControllerTests.swift */; };
+		278DFDF121736D32005751FB /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278DFDF021736D32005751FB /* InputViewController.swift */; };
 		58FC1005A70394B26D48D486 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC1B37A66DFBEE8BC36619 /* Location.swift */; };
 		58FC136BE990A08F5C29A213 /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC1507C8C23839CA175CB9 /* ItemManager.swift */; };
 		58FC167174C074596AB64E4D /* ItemCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FC1F6B26D3CD54A436E3AD /* ItemCellTests.swift */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		278DFDEC21735C24005751FB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		278DFDEE21736C86005751FB /* InputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewControllerTests.swift; sourceTree = "<group>"; };
+		278DFDF021736D32005751FB /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		58FC1507C8C23839CA175CB9 /* ItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
 		58FC178BE4A4D0318A7DB451 /* TodoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		58FC1A09CADFA7A2A531B709 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				611AB119FA794B7108591AD4 /* ItemListDataProvider.swift */,
 				611AB44CA671E91AC505178B /* ItemCell.swift */,
 				58FC1A09CADFA7A2A531B709 /* DetailViewController.swift */,
+				278DFDF021736D32005751FB /* InputViewController.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 		611ABE1F242B86789170B417 /* TodoTests */ = {
 			isa = PBXGroup;
 			children = (
+				278DFDEE21736C86005751FB /* InputViewControllerTests.swift */,
 				611AB1B5B7203131D3502D53 /* Info.plist */,
 				611AB1A1FE265BA788E295BF /* Model */,
 				611ABFD28DDA3E8CA0B1F4A3 /* ItemListViewControllerTest.swift */,
@@ -261,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278DFDF121736D32005751FB /* InputViewController.swift in Sources */,
 				611ABA545DCF53E29D0CB693 /* AppDelegate.swift in Sources */,
 				58FC1005A70394B26D48D486 /* Location.swift in Sources */,
 				58FC1E59BD37C39045353C3F /* TodoItem.swift in Sources */,
@@ -279,6 +286,7 @@
 				611AB7B44A32C27DFFD26A3E /* LocationTests.swift in Sources */,
 				611AB80CDD91486C9E60473F /* ToDoItemTests.swift in Sources */,
 				611ABB23A6C5BCCA4CC85220 /* ItemManagerTests.swift in Sources */,
+				278DFDEF21736C86005751FB /* InputViewControllerTests.swift in Sources */,
 				611ABF6AB98F76A53EE83D6F /* ItemListViewControllerTest.swift in Sources */,
 				611AB39EDAB5EFBABFF66FD6 /* ItemListDataProviderTests.swift in Sources */,
 				58FC167174C074596AB64E4D /* ItemCellTests.swift in Sources */,
