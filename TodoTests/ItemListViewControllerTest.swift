@@ -15,7 +15,7 @@ class ItemListViewControllerTest: XCTestCase {
     super.setUp()
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let viewController = storyboard.instantiateViewController(withIdentifier: "ItemListViewController")
-    sut = viewController as! ItemListViewController
+    sut = (viewController as! ItemListViewController)
     sut.loadViewIfNeeded()
   }
 

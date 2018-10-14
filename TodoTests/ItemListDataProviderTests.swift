@@ -17,7 +17,7 @@ class ItemListDataProviderTests: XCTestCase {
     sut = ItemListDataProvider()
     sut.itemManager = ItemManager()
     let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-    controller = storyBoard.instantiateViewController(withIdentifier: "ItemListViewController") as! ItemListViewController
+    controller = (storyBoard.instantiateViewController(withIdentifier: "ItemListViewController") as! ItemListViewController)
     controller.loadViewIfNeeded()
     tableView = controller.tableView
     tableView.dataSource = sut
@@ -63,7 +63,7 @@ class ItemListDataProviderTests: XCTestCase {
   func test_CellForRow_DequeuesCellFromTableView() {
     let mockTableView = MockTableView()
     mockTableView.dataSource = sut
-    mockTableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
+    mockTableView.register(MockItemCell.self, forCellReuseIdentifier: "ItemCell")
     sut.itemManager?.add(TodoItem(title: "foo"))
     mockTableView.reloadData()
     _ = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0))
@@ -153,7 +153,7 @@ extension ItemListDataProviderTests {
   class MockItemCell: ItemCell {
     var item: TodoItem?
 
-    override func configCell(with item: TodoItem) {
+    override func configCell(with item: TodoItem, checked: Bool = false) {
       self.item = item
     }
 
