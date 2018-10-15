@@ -31,7 +31,9 @@ class ItemManager: NSObject {
     if let nsToDoItems = NSArray(contentsOf: toDoPathURL) {
       for dict in nsToDoItems {
         if let toDoItem = TodoItem(dict: dict as! [String: Any]) {
-          toDoItems.append(toDoItem)
+          toDoItem.checked
+              ? doneItems.append(toDoItem)
+              : toDoItems.append(toDoItem)
         }
       }
     }
@@ -52,12 +54,14 @@ class ItemManager: NSObject {
   }
 
   func checkItem(at index: Int) {
-    let item = toDoItems.remove(at: index)
+    var item = toDoItems.remove(at: index)
+    item.checked = true
     doneItems.append(item)
   }
 
   func uncheckItem(at index: Int) {
-    let item = doneItems.remove(at: index)
+    var item = doneItems.remove(at: index)
+    item.checked = false
     toDoItems.append(item)
   }
   func doneItem(at index: Int) -> TodoItem {
@@ -70,7 +74,9 @@ class ItemManager: NSObject {
   }
 
   @objc func save() {
-    let nsToDoItems = toDoItems.map { $0.plistDict }
+    var nsToDoItems = toDoItems.map { $0.plistDict }
+    let nsDoneItems = doneItems.map { $0.plistDict }
+    nsToDoItems.append(contentsOf: nsDoneItems)
     guard nsToDoItems.count > 0 else {
       try? FileManager.default.removeItem(at: toDoPathURL)
       return

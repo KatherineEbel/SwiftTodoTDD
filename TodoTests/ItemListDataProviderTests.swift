@@ -138,7 +138,7 @@ class ItemListDataProviderTests: XCTestCase {
     XCTAssertEqual(tableView.numberOfRows(inSection: 1), 0)
   }
 
-  func test_SelectingACell_SendsNotificaton() {
+  func test_SelectingACell_SendsNotification() {
     let item = TodoItem(title: "First")
     sut.itemManager?.add(item)
 

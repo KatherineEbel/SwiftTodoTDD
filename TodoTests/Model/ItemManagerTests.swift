@@ -85,19 +85,35 @@ class ItemManagerTests: XCTestCase {
   }
 
   func test_ToDoItemsGetSerialized() {
-    var itemManager: ItemManager? = ItemManager()
     let firstItem = TodoItem(title: "First")
-    itemManager?.add(firstItem)
+    sut?.add(firstItem)
     let secondItem = TodoItem(title: "Second")
-    itemManager?.add(secondItem)
+    sut?.add(secondItem)
     NotificationCenter.default.post(
         name: UIApplication.willResignActiveNotification,
         object: nil)
-    itemManager = nil
-    XCTAssertNil(itemManager)
-    itemManager = ItemManager()
-    XCTAssertEqual(itemManager?.toDoCount, 2)
-    XCTAssertEqual(itemManager?.item(at: 0), firstItem)
-    XCTAssertEqual(itemManager?.item(at: 1), secondItem)
+    sut = nil
+    XCTAssertNil(sut)
+    sut = ItemManager()
+    XCTAssertEqual(sut?.toDoCount, 2)
+    XCTAssertEqual(sut?.item(at: 0), firstItem)
+    XCTAssertEqual(sut?.item(at: 1), secondItem)
+  }
+
+  func test_DoneTodoItemsGetSerialized() {
+    let firstItem = TodoItem(title: "First")
+    sut.add(firstItem)
+    let secondItem = TodoItem(title: "Second")
+    sut.add(secondItem)
+    sut.checkItem(at: 0)
+    NotificationCenter.default.post(
+        name: UIApplication.willResignActiveNotification,
+        object: nil)
+    sut = nil
+    XCTAssertNil(sut)
+    sut = ItemManager()
+    XCTAssertEqual(sut.toDoCount, 1, "TodoCount should be 1")
+    XCTAssertEqual(sut.doneCount, 1, "doneCount should be 1")
+
   }
 }

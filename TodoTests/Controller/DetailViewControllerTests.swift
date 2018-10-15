@@ -11,12 +11,18 @@ import CoreLocation
 class DetailViewControllerTests: XCTestCase {
 
   var sut: DetailViewController!
-
+  var itemManager: ItemManager!
   override func setUp() {
     super.setUp()
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     sut = (storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController)
     sut.loadViewIfNeeded()
+  }
+
+  override func tearDown() {
+    sut.itemInfo?.itemManager.removeAll()
+    sut = nil
+    super.tearDown()
   }
 
   func test_HasTitleLabel() {
@@ -33,7 +39,7 @@ class DetailViewControllerTests: XCTestCase {
     let coordinate = CLLocationCoordinate2DMake(51.2277, 6.7735)
     let location = Location(name: "Foo", coordinate: coordinate)
     let item = TodoItem(title: "Bar", itemDescription: "Baz", timestamp: 1456150025, location: location)
-    let itemManager = ItemManager()
+    itemManager = ItemManager()
     itemManager.add(item)
     sut.itemInfo = (itemManager, 0)
     sut.beginAppearanceTransition(true, animated: true)
@@ -48,12 +54,12 @@ class DetailViewControllerTests: XCTestCase {
   }
   
   func test_CheckItem_ChecksItemInItemManager() {
-    let itemManager = ItemManager()
+    itemManager = ItemManager()
     let item = TodoItem(title: "Foo")
     itemManager.add(item)
     sut.itemInfo = (itemManager, 0)
     sut.checkItem()
-    XCTAssertEqual(itemManager.toDoCount, 0)
-    XCTAssertEqual(itemManager.doneCount, 1)
+    XCTAssertEqual(itemManager.toDoCount, 0, "toDoCount should be 0")
+    XCTAssertEqual(itemManager.doneCount, 1, "doneCount should be 1")
   }
 }

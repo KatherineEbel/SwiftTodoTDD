@@ -13,16 +13,19 @@ struct TodoItem {
   let itemDescription: String?
   let timestamp: Double?
   let location: Location?
+  var checked: Bool = false
 
   private let titleKey = "titleKey"
   private let itemDescriptionKey = "itemDescriptionKey"
   private let timestampKey = "timestampKey"
   private let locationKey = "locationKey"
+  private let isCheckedKey = "isCheckedKey"
   var plistDict: [String: Any] {
     var dict = [String:Any]()
     dict[titleKey] = title
     dict[itemDescriptionKey] = itemDescription
     dict[timestampKey] = timestamp
+    dict[isCheckedKey] = checked
     if let location = location {
       let locationDict = location.plistDict
       dict[locationKey] = locationDict
@@ -44,6 +47,7 @@ struct TodoItem {
     self.title = title
     self.itemDescription = dict[itemDescriptionKey] as? String
     self.timestamp = dict[timestampKey] as? Double
+    self.checked = dict[isCheckedKey] as? Bool ?? false
     if let locationDict = dict[locationKey] as? [String:Any] {
       self.location = Location(dict: locationDict)
     } else {
