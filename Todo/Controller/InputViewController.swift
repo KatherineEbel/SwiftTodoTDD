@@ -39,8 +39,8 @@ class InputViewController: UIViewController {
     if let locationName = locationTextField.text, locationName.count > 0 {
       if let address = addressTextField.text, address.count > 0 {
         geocoder.geocodeAddressString(address) {
-          [unowned self] (placemarks, error) -> Void in
-          let placemark = placemarks?.first
+          [unowned self] (placeMarks, error) -> Void in
+          let placemark = placeMarks?.first
           
           let item = TodoItem(title: titleString, itemDescription: descriptionString, timestamp: date?.timeIntervalSince1970, location: Location(name: locationName, coordinate: placemark?.location?.coordinate))
           self.itemManager?.add(item)

@@ -72,6 +72,17 @@ extension ItemListDataProvider: UITableViewDelegate {
     }
     return buttonTitle
   }
+
+  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let itemSection = Section(rawValue: indexPath.section) else { fatalError() }
+    switch itemSection {
+      case .toDo:
+        NotificationCenter.default.post(
+            name: NSNotification.Name("ItemSelectedNotification"),
+            object: self, userInfo: ["index": indexPath.row])
+      default: break
+    }
+  }
 }
 
 @objc protocol ItemManagerSettable {

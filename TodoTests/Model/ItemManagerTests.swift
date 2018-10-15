@@ -4,6 +4,7 @@
 //
 
 import XCTest
+import UIKit
 @testable import Todo
 
 class ItemManagerTests: XCTestCase {
@@ -15,6 +16,7 @@ class ItemManagerTests: XCTestCase {
   }
 
   override func tearDown() {
+    sut.removeAll()
     sut = nil
     super.tearDown()
   }
@@ -80,5 +82,22 @@ class ItemManagerTests: XCTestCase {
     sut.add(TodoItem(title: "Foo"))
 
     XCTAssertEqual(sut.toDoCount, 1)
+  }
+
+  func test_ToDoItemsGetSerialized() {
+    var itemManager: ItemManager? = ItemManager()
+    let firstItem = TodoItem(title: "First")
+    itemManager?.add(firstItem)
+    let secondItem = TodoItem(title: "Second")
+    itemManager?.add(secondItem)
+    NotificationCenter.default.post(
+        name: UIApplication.willResignActiveNotification,
+        object: nil)
+    itemManager = nil
+    XCTAssertNil(itemManager)
+    itemManager = ItemManager()
+    XCTAssertEqual(itemManager?.toDoCount, 2)
+    XCTAssertEqual(itemManager?.item(at: 0), firstItem)
+    XCTAssertEqual(itemManager?.item(at: 1), secondItem)
   }
 }
